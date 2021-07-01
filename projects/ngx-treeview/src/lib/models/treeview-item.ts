@@ -1,5 +1,6 @@
 import { isBoolean, isNil, isString } from 'lodash';
 import { TreeviewHelper } from '../helpers/treeview-helper';
+import { Observable, of } from 'rxjs';
 
 export interface TreeviewSelection {
   checkedItems: TreeviewItem[];
@@ -97,6 +98,10 @@ export class TreeviewItem {
 
   get collapsed(): boolean {
     return this.internalCollapsed;
+  }
+
+  get collapsedChanges(): Observable<boolean> {
+    return of(this.internalCollapsed);
   }
 
   set collapsed(value: boolean) {
